@@ -82,7 +82,7 @@ const SignIn = () => {
                                 </div>
                                 <input className='btn w-full my-2 btn-sm text-white' type="submit" value="Sign In " />
                             </form>
-                            <p className='text-white'><small>If you don't have an account? please<Link className='text-primary' to="/home">SignUp</Link></small></p>
+                            <p className='text-white'><small>If you don't have an account? please <Link className='text-primary text-bold' to="/riderSignUp"> SignUp</Link></small></p>
 
                         </div>
                     </div>

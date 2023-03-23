@@ -75,7 +75,9 @@ const Dashboard = () => {
         }
     }
 
-    const [search, setSearch] = useState('')
+    const [nameSearch, setNameSearch] = useState('')
+    const [emailSearch, setEmailSearch] = useState('')
+    const [mobileSearch, setMobileSearch] = useState('')
     const [age, setAge] = useState('');
 
 
@@ -86,7 +88,9 @@ const Dashboard = () => {
             <Navbar></Navbar>
             <p className='text-xl text-center text-indigo-500 py-2 ' >Here searching method will work only for the single page you are on</p>
             <div className='flex justify-between items-center mx-3 '>
-                <input onChange={(e) => setSearch(e.target.value)} className='p-2 outline mx-3 my-3 border w-full ' type="text" name="search" placeholder='Searching By name, email, or mobile' id="" />
+                <input onChange={(e) => setNameSearch(e.target.value)} className='p-2 outline mx-3 my-3 border w-full ' type="text" name="nameSearch" placeholder='Searching By name ' id="" />
+                <input onChange={(e) => setEmailSearch(e.target.value)} className='p-2 outline mx-3 my-3 border w-full ' type="text" name="emailSearch" placeholder='Searching By email ' id="" />
+                <input onChange={(e) => setMobileSearch(e.target.value)} className='p-2 outline mx-3 my-3 border w-full ' type="text" name="mobileSearch" placeholder='Searching By mobile number ' id="" />
                 {/* <button className='btn mx-3  btn-outline btn-sm '>Search</button> */}
 
 
@@ -109,7 +113,6 @@ const Dashboard = () => {
                     <thead className='bg-slate-700 '>
                         <tr className='w-full '>
                             <th>Select</th>
-                            <th>Serial</th>
                             <th>User Name</th>
                             <th>Email</th>
                             <th>Role</th>
@@ -127,9 +130,9 @@ const Dashboard = () => {
 
                             records.filter((u) => {
                                 return (
-                                    (search.toLowerCase() === "" ? u : u.name.toLowerCase().includes(search)) ||
-                                    (search.toLowerCase() === "" ? u : u.email.toLowerCase().includes(search)) ||
-                                    (search.toLowerCase() === "" ? u : u.phone.toLowerCase().includes(search))
+                                    (nameSearch.toLowerCase() === "" ? u : u.name.toLowerCase().includes(nameSearch)) && 
+                                    (emailSearch.toLowerCase() === "" ? u : u.email.toLowerCase().includes(emailSearch)) &&
+                                    (mobileSearch.toLowerCase() === "" ? u : u.phone.toLowerCase().includes(mobileSearch))
                                 )
                                     && (
                                         !age ||
@@ -140,7 +143,7 @@ const Dashboard = () => {
                                     )
 
                             })
-                                .map((user, index) =>
+                                .map((user) =>
 
                                     <tr key={user._id} className=' bg-slate-700'>
                                         <th>
@@ -148,7 +151,6 @@ const Dashboard = () => {
                                                 <input type="checkbox" class="checkbox" />
                                             </label>
                                         </th>
-                                        <td class="">{index + 1} </td>
                                         <td>
                                             <div class="flex items-center space-x-3">
 
@@ -183,17 +185,17 @@ const Dashboard = () => {
 
 
             <div className='pagination my-10 '>
-                <button onClick={prePage} className='page-item btn mx-1 '>
+                <button onClick={prePage} className='page-item btn btn-outline btn-info mx-1 '>
                     Prev
                 </button>
                 {
                     numbers.map((n, i) => (
-                        <button onClick={() => changePage(n)} className={`page-link btn mx-1 ${currentPage === n ? 'active' : ''}`} key={i}>
+                        <button onClick={() => changePage(n)} className={`page-link btn btn-outline btn-info mx-1 ${currentPage === n ? 'active' : ''}`} key={i}>
                             {n}
                         </button>
                     ))
                 }
-                <button onClick={nextPage} className='page-item btn mx-1'>
+                <button onClick={nextPage} className='page-item btn btn-outline btn-info mx-1'>
                     Next
                 </button>
             </div>
